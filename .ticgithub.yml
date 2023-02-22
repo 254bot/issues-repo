@@ -24,7 +24,7 @@ config:
 workflows:
   emails-to-issues:
     active: true  # default True if listed
-    dry: false  # default False
+    dry: true  # default False
     cron: "0 */4 * * *"
     filters:
       - name: bot
@@ -35,7 +35,7 @@ workflows:
       hours: 48
     reply-inbox:
       active: true
-      template: "reply.txt"
+      #template: "reply.txt"
 
   unassigned-reminder:
     active: true
