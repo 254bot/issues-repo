@@ -13,7 +13,7 @@ jobs:
       - name: Install ticgithub
         run: python -m pip install ticgithub
       - name: Run ticgithub script for unclosed-reminder
-        run: python -m ticgithub.tasks.unclosed_reminder 
+        run: python -m ticgithub.tasks.unclosed_reminder --loglevel INFO 
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           INBOX_PASSWORD: ${{ secrets.INBOX_PASSWORD }}

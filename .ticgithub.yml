@@ -39,28 +39,28 @@ workflows:
 
   unassigned-reminder:
     active: true
-    dry: false
+    dry: true
     cron: "0 15 * * *"
     email-ticket-only: true
     delay:
-      hours: 24
-    template: ticgithub/data/templates/unassigned.txt
+      seconds: 1
+    #template: ticgithub/data/templates/unassigned.txt
     notify:
       - dwhswenson
 
   unclosed-reminder:
     active: true
-    dry: false
+    dry: true
     cron: "0 15 * * *"
     email-ticket-only: true
-    template: ticgithub/data/templates/unclosed.txt
+    #template: ticgithub/data/templates/unclosed.txt
     delay:
-      hours: 48
+      seconds: 1
     notify: []
 
   assignment-to-gmail:
     active: true
-    dry: false
+    dry: true
 
 ticgithub:
   # the first entry here is the default; normal users will nearly never

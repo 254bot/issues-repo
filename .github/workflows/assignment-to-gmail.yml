@@ -12,7 +12,7 @@ jobs:
       - name: Install ticgithub
         run: python -m pip install ticgithub
       - name: Run ticgithub script
-        run: python -m ticgithub.tasks.assignment_to_gmail  $ISSUE_NUM
+        run: python -m ticgithub.tasks.assignment_to_gmail  --loglevel INFO $ISSUE_NUM
         env: 
           ISSUE_NUM: ${{ github.event.issue.number }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}

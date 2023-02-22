@@ -13,7 +13,7 @@ jobs:
       - name: Install ticgithub
         run: python -m pip install ticgithub
       - name: Run ticgithub script for emails-to-issues
-        run: python -m ticgithub.tasks.emails_to_issues 
+        run: python -m ticgithub.tasks.emails_to_issues --loglevel INFO 
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           INBOX_PASSWORD: ${{ secrets.INBOX_PASSWORD }}
