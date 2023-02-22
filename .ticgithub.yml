@@ -1,0 +1,75 @@
+config:
+  # this describes the inbox that we get emails from
+  inbox:
+    type: gmail  # gmail is the only implemented type
+    user: 0xfe.254bot@gmail.com
+    #user: ticgithub@gmail.com
+    secret: INBOX_PASSWORD  # this is the name
+    host: imap.gmail.com
+
+  bot:
+    token_name: BOT_TOKEN
+    repo: 254bot/issues-repo
+    #repo: dwhswenson/ticgithub
+    sendmail:
+      user: 0xfe.254bot@gmail.com
+      secret: SENDMAIL_PASSWORD
+      host: smtp.google.com
+
+  team:
+    - github: dwhswenson
+      email: david.swenson
+      label: assigned/dwhswenson
+
+workflows:
+  emails-to-issues:
+    active: true  # default True if listed
+    dry: false  # default False
+    cron: "0 */4 * * *"
+    filters:
+      - name: bot
+        active: true
+      - name: team
+        active: true
+    recent:
+      hours: 48
+    reply-inbox:
+      active: true
+      template: "reply.txt"
+
+  unassigned-reminder:
+    active: true
+    dry: false
+    cron: "0 15 * * *"
+    email-ticket-only: true
+    delay:
+      hours: 24
+    template: ticgithub/data/templates/unassigned.txt
+    notify:
+      - dwhswenson
+
+  unclosed-reminder:
+    active: true
+    dry: false
+    cron: "0 15 * * *"
+    email-ticket-only: true
+    template: ticgithub/data/templates/unclosed.txt
+    delay:
+      hours: 48
+    notify: []
+
+  assignment-to-gmail:
+    active: true
+    dry: false
+
+ticgithub:
+  # the first entry here is the default; normal users will nearly never
+  # need to add the ticgithub label or anything under it
+  - install: python -m pip install ticgithub
+    suffix: ""
+    force-dry: false
+  # for developing the code, naturally, I need to install developer versions
+  # of everything -- we force those to run as dry runs
+  - install: python -m pip install -e .
+    suffix: "-dev"
+    force-dry: true
