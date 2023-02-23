@@ -24,7 +24,7 @@ config:
 workflows:
   emails-to-issues:
     active: true  # default True if listed
-    dry: true  # default False
+    dry: false  # default False
     cron: "0 */4 * * *"
     filters:
       - name: bot
@@ -35,11 +35,11 @@ workflows:
       hours: 48
     reply-inbox:
       active: true
-      #template: "reply.txt"
+      #template: reply.txt
 
   unassigned-reminder:
     active: true
-    dry: true
+    dry: false
     cron: "0 15 * * *"
     email-ticket-only: true
     delay:
@@ -50,7 +50,7 @@ workflows:
 
   unclosed-reminder:
     active: true
-    dry: true
+    dry: false
     cron: "0 15 * * *"
     email-ticket-only: true
     #template: ticgithub/data/templates/unclosed.txt
@@ -60,16 +60,4 @@ workflows:
 
   assignment-to-gmail:
     active: true
-    dry: true
-
-ticgithub:
-  # the first entry here is the default; normal users will nearly never
-  # need to add the ticgithub label or anything under it
-  - install: python -m pip install ticgithub
-    suffix: ""
-    force-dry: false
-  # for developing the code, naturally, I need to install developer versions
-  # of everything -- we force those to run as dry runs
-  - install: python -m pip install -e .
-    suffix: "-dev"
-    force-dry: true
+    dry: false
