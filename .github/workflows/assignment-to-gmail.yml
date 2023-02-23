@@ -16,5 +16,4 @@ jobs:
         env: 
           ISSUE_NUM: ${{ github.event.issue.number }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-      
-
+          INBOX_PASSWORD: ${{ secrets.INBOX_PASSWORD }}
