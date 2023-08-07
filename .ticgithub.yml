@@ -26,34 +26,34 @@ config:
 
 workflows:
   # turn emails into GitHub issues
-  emails-to-issues:
-    active: true  # default True if listed
-    dry: false  # default False
-    cron: "0 */4 * * *"  # cron entry for when this should run
-    filters:
-      # filter out any emails written be the bot
-      - name: bot
-        active: true
-      # filter out any from from team members unless inbox address is "To:"
-      # Idea here is that CC/BCC to inbox should be filtered, but still
-      # create an issue if a message if forwarded to the inbox by a team
-      # member
-      - name: team
-        active: true
-      # omit specific senders
-      - name: omit-senders
-        active: true
-        senders:
-          - notifications@github.com
-    # only load emails more recent than this (rounded to the day); this
-    # reduces download times when connecting to the inbox. Inputs are the
-    # kwargs of datetime.timedelta
-    recent:
-      hours: 48
-    # automatically send a reply to the inbox to say the 
-    reply-inbox:
-      active: true
-      #template: reply.txt
+  #emails-to-issues:
+    #active: false  # default True if listed; disabled for this repo
+    #dry: false  # default False
+    #cron: "0 */4 * * *"  # cron entry for when this should run
+    #filters:
+      ## filter out any emails written be the bot
+      #- name: bot
+        #active: true
+      ## filter out any from from team members unless inbox address is "To:"
+      ## Idea here is that CC/BCC to inbox should be filtered, but still
+      ## create an issue if a message if forwarded to the inbox by a team
+      ## member
+      #- name: team
+        #active: true
+      ## omit specific senders
+      #- name: omit-senders
+        #active: true
+        #senders:
+          #- notifications@github.com
+    ## only load emails more recent than this (rounded to the day); this
+    ## reduces download times when connecting to the inbox. Inputs are the
+    ## kwargs of datetime.timedelta
+    #recent:
+      #hours: 48
+    ## automatically send a reply to the inbox to say the 
+    #reply-inbox:
+      #active: true
+      ##template: reply.txt
 
   unassigned-reminder:
     active: true
